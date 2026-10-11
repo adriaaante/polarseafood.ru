@@ -1,0 +1,32 @@
+<div class="modal" id="m-product" role="dialog" aria-modal="true" aria-label="Карточка товара">
+  <div class="scrim" data-close></div>
+  <div class="sheet"><button class="x" data-close aria-label="Закрыть"><svg width="20" height="20"><use href="#i-x"/></svg></button><div id="pd"></div></div>
+</div>
+<div class="modal narrow" id="m-price" role="dialog" aria-modal="true" aria-labelledby="price-title">
+  <div class="scrim" data-close></div>
+  <div class="sheet"><button class="x" data-close aria-label="Закрыть"><svg width="20" height="20"><use href="#i-x"/></svg></button>
+    <form class="pform" novalidate>
+      <p class="eyebrow">Ответим в течение рабочего дня</p>
+      <h3 id="price-title">Запросить прайс-лист</h3>
+      <p class="muted" style="color:var(--muted);margin-top:-6px">Пришлём актуальный прайс, условия поставки и документы о качестве.</p>
+      <div class="req-list" data-req></div>
+      <div class="seg" role="radiogroup" aria-label="Кто вы">
+        <label><input type="radio" name="type" value="Торговая сеть" checked><span>Торговая сеть</span></label>
+        <label><input type="radio" name="type" value="Опт / дистрибуция"><span>Опт / дистрибуция</span></label>
+        <label><input type="radio" name="type" value="HoReCa"><span>HoReCa</span></label>
+        <label><input type="radio" name="type" value="Другое"><span>Другое</span></label>
+      </div>
+      <div class="fields">
+        <div class="field"><input name="name" id="pf-name" placeholder=" " autocomplete="name" required><label for="pf-name">Имя</label><div class="msg">Как к вам обращаться?</div></div>
+        <div class="field"><input name="phone" id="pf-phone" type="tel" inputmode="tel" placeholder=" " autocomplete="tel" required><label for="pf-phone">Телефон</label><div class="msg">Проверьте номер</div></div>
+        <div class="field"><input name="email" id="pf-email" type="email" placeholder=" " autocomplete="email"><label for="pf-email">E-mail для прайса</label><div class="msg">Проверьте e-mail</div></div>
+        <div class="field"><input name="city" id="pf-city" placeholder=" " autocomplete="address-level2"><label for="pf-city">Город / регион</label></div>
+        <div class="field full"><textarea name="comment" id="pf-comment" placeholder=" "></textarea><label for="pf-comment">Что интересует (объёмы, позиции)</label></div>
+      </div>
+      <label class="consent"><input type="checkbox" name="consent" required><span>Даю согласие на обработку персональных данных в соответствии с <a href="https://docs.yandex.ru/docs/view?url=ya-disk-public%3A%2F%2F2yWpOA2j5oShLt%2BmZbvK%2ByBTJAmuV2bjo7tN2UWV4Yrx3dhusw1M2zWhHETr9N3cq%2FJ6bpmRyOJonT3VoXnDag%3D%3D&name=%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%9F%D0%94%202024.pdf&nosw=1" target="_blank" rel="noopener">политикой</a></span></label>
+      <button class="btn btn-brand" style="width:100%" type="submit">Получить прайс-лист <svg><use href="#i-arrow"/></svg></button>
+      <p class="form-note">Без спама. Менеджер свяжется в рабочее время.</p>
+    </form>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
