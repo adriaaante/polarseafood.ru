@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Аудит и КП FutureFlow — ПОЛАР</title>
+<!-- Шаблон: repo-notes templates/report.html. --accent — фирменный цвет ПОЛАР (#1C4E91), --blue — FutureFlow, не менять.
+     Сборка: bash <skill>/scripts/build-pdf.sh audit-kp.html "Аудит и КП FutureFlow — ПОЛАР (11.10.2026).pdf" -->
+<style>
+@font-face{font-family:"Manrope";src:url("../brand/Manrope.ttf") format("truetype");font-weight:200 800}
+@page{size:A4;margin:0}
+:root{--ink:#1C1C1B;--muted:#66625C;--line:#DCD8D0;--bg:#FFFFFF;--panel:#F3F6F9;--panel2:#E6EDF3;--accent:#1C4E91;--accent-ink:#163E74;--ice:#89D0E4;--blue:#3c8ad8;--blue-ink:#2b6fb3;--ok:#2E8B4A;--warn:#B8860B;--bad:#C0392B}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;font-size:13.2px;line-height:1.48}
+.page{width:210mm;height:297mm;padding:13mm 15mm 12mm;position:relative;break-after:page;page-break-after:always;background:var(--bg);overflow:hidden}
+.page:last-child{break-after:auto;page-break-after:auto}
+.foot{position:absolute;left:15mm;right:15mm;bottom:7mm;display:flex;justify-content:space-between;font-size:8.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:4px}
+.foot b{color:var(--blue-ink);font-weight:700}
+.eyebrow{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:800;margin:0 0 5px}
+h1{font-size:30px;line-height:1.1;font-weight:800;letter-spacing:-.015em;margin:0 0 10px}
+h2{font-size:23px;font-weight:800;letter-spacing:-.01em;margin:0 0 8px}
+h2 .n{color:var(--accent);margin-right:6px}
+h3{font-size:14px;font-weight:800;margin:10px 0 5px}
+p{margin:0 0 7px}
+ul,ol{margin:0 0 8px;padding-left:16px}li{margin:0 0 3px}
+.lead{font-size:14.5px;color:var(--muted);margin:0 0 12px;max-width:72ch}
+.muted{color:var(--muted)}.small{font-size:10.6px;color:var(--muted)}
+b{font-weight:800}
+table{border-collapse:collapse;width:100%;font-size:11.8px;margin:4px 0 10px}
+th,td{text-align:left;vertical-align:top;padding:6.5px 7px;border-bottom:1px solid var(--line)}
+th{font-size:8.2px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:800;border-bottom:1.5px solid var(--ink)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0 14px}
+.kpi{background:var(--panel);border-radius:8px;padding:9px 11px}
+.kpi .v{font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:10.4px;color:var(--muted);margin-top:3px}
+.kpi.acc{background:var(--accent);color:#fff}.kpi.acc .l{color:#CFE0F2}
+.kpi.good .v{color:var(--ok)}.kpi.bad .v{color:var(--bad)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.box{background:var(--panel);border-radius:10px;padding:12px 14px;margin:0 0 10px}
+.box h3{margin-top:0}
+.call{border-left:3px solid var(--accent);background:var(--panel);padding:11px 13px;border-radius:0 8px 8px 0;margin:8px 0 10px}
+.call.ok{border-color:var(--ok)}.call.warn{border-color:var(--warn)}.call.bad{border-color:var(--bad)}.call.blue{border-color:var(--blue)}
+.tag{display:inline-block;font-size:8.2px;font-weight:800;padding:1px 7px;border-radius:999px;background:var(--panel2);vertical-align:middle;letter-spacing:.03em;white-space:nowrap}
+.tag.bad{background:#F6DBD6;color:var(--bad)}.tag.warn{background:#F3E7C2;color:#7A5A06}.tag.ok{background:#D8EEDD;color:#1F6B37}.tag.blue{background:#D9E8F8;color:var(--blue-ink)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps>li{counter-increment:s;position:relative;padding:10px 12px 10px 36px;background:var(--panel);border-radius:8px;margin:0 0 6px}
+.steps>li::before{content:counter(s);position:absolute;left:9px;top:8px;width:19px;height:19px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:10px}
+.steps b{display:block;margin-bottom:1px}
+.steps .why{color:var(--muted);font-size:11.2px}
+.cover{background:#061A2E;color:#fff;padding:18mm 16mm 14mm}
+.cover .eyebrow{color:var(--ice)}
+.cover h1{font-size:38px;color:#fff;max-width:20ch}
+.cover .lead{color:#B8CEDD;font-size:14px;max-width:60ch}
+.cover .kpi{background:#0E2A45;color:#fff}.cover .kpi .l{color:#9FB9CC}.cover .kpi .v{color:#fff}
+.cover .kpi.bad .v{color:#FF9C8A}
+.cover .foot{border-top-color:#1E3A55;color:#8FA9BC}
+.toc{columns:2;column-gap:20px;font-size:11px}
+.toc div{break-inside:avoid;padding:4px 0;border-bottom:1px solid #1E3A55;display:flex;gap:8px}
+.toc .n{color:var(--ice);font-weight:800;min-width:18px}
+.client{display:flex;align-items:center;gap:14px;margin-bottom:12mm}
+.client .plate{background:#fff;border-radius:12px;padding:8px;display:flex}
+.client img{width:20mm;height:20mm}
+.client .txt{font-size:11px;color:#B8CEDD;line-height:1.45}.client .txt b{display:block;color:#fff;font-size:14px}
+.sig{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px}
+.fflogo{display:block;width:24.6mm;height:5.3mm}   /* ЛОГОТИП FutureFlow — везде один: тот же PNG, 24,6×5,3 мм (repo-notes, 3.0) */
+.coverff{position:absolute;left:16mm;right:16mm;bottom:20mm;padding-top:12px;border-top:1px solid #1E3A55;display:flex;align-items:center;gap:18px}
+.coverff .txt{font-size:10px;color:#9FB9CC;line-height:1.5}
+/* скриншоты */
+.shots{display:flex;gap:8px;align-items:flex-start}
+.shot{margin:0;flex:1;min-width:0}
+.shot img{display:block;width:100%;border-radius:8px;border:1px solid var(--line);box-shadow:0 6px 16px -8px rgba(0,0,0,.35)}
+.shot figcaption{font-size:9.8px;color:var(--muted);margin-top:4px;line-height:1.3}
+.shot.ph img{border-radius:12px}
+.crop{overflow:hidden;border-radius:8px;border:1px solid var(--line)}
+.crop img{border:0;border-radius:0;box-shadow:none}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:6px 0 10px}
+.vs>div{padding:8px 10px}.vs .was{background:#FBF1EF}.vs .now{background:#EEF7F1}
+.vs h3{margin:0 0 4px;font-size:11px}
+.price{background:#061A2E;color:#fff;border-radius:14px;padding:26px 24px;margin:8px 0 10px;display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:center}
+.price .sum{font-size:50px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.price .sum small{font-size:14px;font-weight:700;color:#9FB9CC;margin-left:4px}
+.price .sub{color:#B8CEDD;font-size:10.5px;margin-top:6px}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:4px}
+.checks li{position:relative;padding-left:18px;font-size:11.8px}
+.checks li::before{content:"✓";position:absolute;left:0;top:-1px;color:var(--ice);font-weight:800;font-size:12px}
+.light .checks li::before{color:var(--accent)}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;background:var(--panel2);font-size:9px;font-weight:700;margin:0 3px 3px 0}
+.bignum{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1;color:var(--accent)}
+.bar{height:8px;background:var(--panel2);border-radius:5px;overflow:hidden;margin:3px 0 2px}
+.bar i{display:block;height:100%;background:var(--bad)}.bar.ok i{background:var(--ok)}
+</style>
+</head>
+<body>
+
+<!-- 1. Обложка -->
+<section class="page cover">
+  <div class="client"><div class="plate"><img src="../brand/polar-logo.png" alt="ПОЛАР"></div><div class="txt"><b>ООО «ПОЛАР СИФУД РАША»</b>Производство и поставка замороженных морепродуктов · ПОЛАР, Chef Polar, Элит ПОЛАР, Cross Fish, «Медвежонок»</div></div>
+  <p class="eyebrow">Аудит сайта и цифрового присутствия · октябрь 2026</p>
+  <h1>Сайт, карты и репутация ПОЛАР: что мешает продажам и как это закрывает новый сайт</h1>
+  <p class="lead">Проверили 147 страниц polarseafood.ru, мобильную версию, скорость, формы, документы, карточки в Яндекс Картах, 2ГИС и Google, отзывы, соцсети и сайты конкурентов. По итогам сделали новый сайт, который закрывает найденные проблемы.</p>
+  <div class="kpis">
+    <div class="kpi bad"><div class="v">10,9 с</div><div class="l">загрузка главного экрана на телефоне (Lighthouse; норма — до 2,5 с)</div></div>
+    <div class="kpi bad"><div class="v">7 стр.</div><div class="l">без мобильной версии, в том числе весь каталог продукции</div></div>
+    <div class="kpi bad"><div class="v">3 из 4</div><div class="l">документа о качестве на сайте не открываются</div></div>
+    <div class="kpi bad"><div class="v">«Закрыт»</div><div class="l">статус склада на Яндекс Картах; производство не подтверждено</div></div>
+  </div>
+  <h2 style="color:#fff;margin-top:6mm">Содержание</h2>
+  <div class="toc">
+    <div><span class="n">1</span><span>Главное за одну минуту</span></div>
+    <div><span class="n">2</span><span>Мобильная версия</span></div>
+    <div><span class="n">3</span><span>Путь покупателя и закупщика</span></div>
+    <div><span class="n">4</span><span>Скорость и техника</span></div>
+    <div><span class="n">5</span><span>Поиск и контент</span></div>
+    <div><span class="n">6</span><span>Юридические риски и доверие</span></div>
+    <div><span class="n">7</span><span>Яндекс Карты, 2ГИС, Google</span></div>
+    <div><span class="n">8</span><span>Отзывы, соцсети, конкуренты</span></div>
+    <div><span class="n">9</span><span>Новый сайт ПОЛАР</span></div>
+    <div><span class="n">10</span><span>Было → стало</span></div>
+    <div><span class="n">11</span><span>Точки роста</span></div>
+    <div><span class="n">12</span><span>Предложение FutureFlow</span></div>
+  </div>
+  <div style="margin-top:7mm;display:flex;gap:10px;align-items:flex-end"><img src="img/new-home-d.jpg" alt="" style="height:46mm;width:auto;border-radius:8px;border:1px solid #1E3A55"><img src="img/new-home-m.jpg" alt="" style="height:46mm;width:auto;border-radius:8px;border:1px solid #1E3A55"></div>
+  <div class="coverff"><img class="fflogo" src="../brand/futureflow-logo.png" alt="FutureFlow"><div class="txt">Данные проверены 11.10.2026: сайт, Lighthouse 12.8, Playwright, открытые данные Яндекс Карт, 2ГИС, Google, ФНС</div></div>
+  <div class="foot"><span>Аудит и предложение · 11.10.2026</span><span>futureflow.ru</span></div>
+</section>
+
+<!-- 2. Главное -->
+<section class="page">
+  <p class="eyebrow">Раздел 1</p>
+  <h2><span class="n">1</span>Главное за одну минуту</h2>
+  <p class="lead">У компании сильная база: собственный завод с 2013 года, около 850 контрагентов в 71 регионе, выручка 9,7 млрд ₽ за 2025 год (ГИР БО), пять марок и узнаваемый медведь. Сайт и карты эту силу почти не показывают и теряют обращения на каждом шаге.</p>
+  <table>
+    <tr><th style="width:22%">Направление</th><th style="width:13%">Оценка</th><th>Что видно сейчас</th></tr>
+    <tr><td><b>Мобильная версия</b></td><td><span class="tag bad">Критично</span></td><td>7 страниц, включая весь каталог, показываются на телефоне как уменьшенный десктоп: текст 12 px выглядит как 3,7 px.</td></tr>
+    <tr><td><b>Каталог</b></td><td><span class="tag bad">Критично</span></td><td>Нет страниц товаров, поиска, состава, сроков хранения. 112 позиций — картинки внутри 8 разделов.</td></tr>
+    <tr><td><b>«Где купить»</b></td><td><span class="tag bad">Критично</span></td><td>Раздела нет. Сети упоминаются только в новостях, фирменный магазин при заводе — только в новости 2025 года.</td></tr>
+    <tr><td><b>Путь оптовика</b></td><td><span class="tag bad">Критично</span></td><td>Нет раздела для партнёров, условий и документов. Цифры «850 контрагентов, 71 регион» спрятаны на странице «О компании».</td></tr>
+    <tr><td><b>Формы и 152-ФЗ</b></td><td><span class="tag bad">Критично</span></td><td>Форма «Запросить прайс-лист» на всех 147 страницах собирает телефон без согласия; нет баннера cookie.</td></tr>
+    <tr><td><b>Документы о качестве</b></td><td><span class="tag bad">Критично</span></td><td>3 из 4 ссылок: «Файл не найден» или вход в чужой Яндекс ID.</td></tr>
+    <tr><td><b>Скорость</b></td><td><span class="tag warn">Важно</span></td><td>Lighthouse на телефоне 49–55 из 100, главный экран — 10,9 с. Картинки — 360 МБ исходников, 152 файла тяжелее 1 МБ.</td></tr>
+    <tr><td><b>Поиск (SEO)</b></td><td><span class="tag warn">Важно</span></td><td>На главной нет H1, 38 страниц без описания, 1052 картинки без подписи, нет разметки для Яндекса и Google.</td></tr>
+    <tr><td><b>Карты</b></td><td><span class="tag bad">Критично</span></td><td>Склад в Яндексе «Больше не работает», производство не подтверждено и числится магазином 24/7; в Google дубль со старым адресом и рейтингом 1,0.</td></tr>
+    <tr><td><b>Репутация</b></td><td><span class="tag warn">Важно</span></td><td>На отзывы о производстве ответы есть меньше чем на половину; повторяются жалобы на глазурь и лёд.</td></tr>
+    <tr><td><b>Бренд и визуал</b></td><td><span class="tag ok">Сильная сторона</span></td><td>Узнаваемый медведь, качественные фото упаковок и завода, рецепты, публикации в МК и «Парламентской газете».</td></tr>
+  </table>
+  <div class="call ok"><b>Что мы уже сделали.</b> Новый сайт ПОЛАР готов: каталог из 112 позиций с поиском и карточками, разделы «Партнёрам» и «Где купить», формы с согласием, мобильная версия с нижней панелью действий. Lighthouse на телефоне — 90–94 из 100 вместо 49–55. Подробно — разделы 9–10.</div>
+  <div class="grid3">
+    <div class="box"><h3>Сайт</h3><p class="small" style="margin:0">147 страниц, 94 из них — новости; у 94 страниц меньше 100 слов своего текста.</p></div>
+    <div class="box"><h3>Карты</h3><p class="small" style="margin:0">4 карточки в Яндексе, 3 в 2ГИС, 3 в Google; подтверждены владельцем только 2 из 10.</p></div>
+    <div class="box"><h3>Продажи</h3><p class="small" style="margin:0">Ни одной ссылки на сети и маркетплейсы; прайс выдаётся только через форму без согласия.</p></div>
+  </div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 2</span></div>
+</section>
+
+<!-- 3. Мобильная версия -->
+<section class="page">
+  <p class="eyebrow">Раздел 2</p>
+  <h2><span class="n">2</span>Мобильная версия</h2>
+  <p class="lead">С телефона приходит большая часть покупателей и многие закупщики. На ключевых страницах сайт для них не читается без увеличения.</p>
+  <div class="shots" style="margin-bottom:8px">
+    <figure class="shot ph"><img src="img/old-home-m.jpg" alt=""><figcaption><b>Главная.</b> На первом экране небо и лозунг; кнопка «Связаться» ниже экрана, телефона в шапке нет, плашка закрывает слово «ДЕЛИКАТЕСОВ».</figcaption></figure>
+    <figure class="shot ph"><img src="img/old-krevetki-m.jpg" alt=""><figcaption><b>Креветки.</b> Страница свёрстана шириной 1280 px: калибр, фасовка и описания нечитаемы.</figcaption></figure>
+    <figure class="shot ph"><img src="img/old-popup-m.jpg" alt=""><figcaption><b>Всплывающее окно подписки</b> на весь экран через 10–20 с — даже если человек ничего не листал.</figcaption></figure>
+  </div>
+  <table>
+    <tr><th>Что не так</th><th>Где</th><th style="width:14%">Оценка</th></tr>
+    <tr><td>Фиксированная ширина 1280 px вместо адаптивной вёрстки</td><td>/o-kompanii, /krevetki, /morskie-delikatesy, /ryba-file-i-stejki, /kulinarnye-polufabrikaty, /cross-fish, /novosti</td><td><span class="tag bad">Критично</span></td></tr>
+    <tr><td>Подписка навязывается четырежды: плавающая кнопка, автопопап, иконки в шапке, меню; две разные ссылки на Telegram</td><td>все страницы</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>31 элемент меньше 44 px для пальца: бургер 22×14 px, точки слайдера 8×8, «Читать еще» 76×16</td><td>главная</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>На страницах брендов два бургер-меню одно под другим</td><td>/chef_polar, /elit-polar, /medvegonok</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>Телефоны склада и производства — простой текст, позвонить в одно касание нельзя</td><td>главная, подвал</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>Новости на телефоне идут вперемешку: 07.05 → 04.08 → 18.03 → 28.08.2026</td><td>главная</td><td><span class="tag">Улучшение</span></td></tr>
+  </table>
+  <div class="call blue"><b>В новом сайте:</b> вся вёрстка от телефона; нижняя панель «Каталог · Где купить · Позвонить · Прайс» всегда под пальцем; один ненавязчивый блок соцсетей вместо четырёх.</div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 3</span></div>
+</section>
+
+<!-- 4. Путь клиента -->
+<section class="page">
+  <p class="eyebrow">Раздел 3</p>
+  <h2><span class="n">3</span>Путь покупателя и закупщика</h2>
+  <p class="lead">У сайта две аудитории с разными задачами. Сейчас обе проходят один и тот же путь и на каждом шаге упираются в тупик.</p>
+  <div class="grid2">
+    <div>
+      <h3>Закупщик сети, дистрибьютор, HoReCa</h3>
+      <ol class="steps">
+        <li><b>Ищет условия работы</b><span class="why">Раздела «Партнёрам» нет, слово «опт» встречается на сайте один раз.</span></li>
+        <li><b>Открывает каталог</b><span class="why">Товары не кликаются; нет спецификаций, кратности, сроков хранения.</span></li>
+        <li><b>Запрашивает прайс</b><span class="why">Имя, телефон, регион — без типа клиента, e-mail, согласия и срока ответа. Можно отправить пустую форму.</span></li>
+        <li><b>Проверяет поставщика</b><span class="why">Сертификат и политика качества не открываются (раздел 6).</span></li>
+      </ol>
+    </div>
+    <div>
+      <h3>Покупатель в магазине</h3>
+      <ol class="steps">
+        <li><b>Видит упаковку, ищет бренд</b><span class="why">На первом экране нет продукции.</span></li>
+        <li><b>Хочет понять состав</b><span class="why">Нет состава и пищевой ценности, особенно важных для детской линейки «Медвежонок».</span></li>
+        <li><b>Ищет, где купить</b><span class="why">Раздела нет. Магазин при заводе (с 01.08.2025, 9:00–21:00) — только в новости.</span></li>
+        <li><b>Смотрит рецепт</b><span class="why">15 рецептов не ведут к продукту и «где купить».</span></li>
+      </ol>
+    </div>
+  </div>
+  <div class="shots" style="margin-top:6px">
+    <figure class="shot ph" style="flex:0 0 26%"><img src="img/old-price-m.jpg" alt=""><figcaption>Форма прайса: поля необязательные, согласия нет, подсказка «Москва» выглядит как введённое значение.</figcaption></figure>
+    <figure class="shot ph" style="flex:0 0 26%"><img src="img/old-magazin-m.jpg" alt=""><figcaption>Фирменный магазин: страница-новость без карты, телефона и маршрута; видео VK задерживает загрузку до 9–18 с.</figcaption></figure>
+    <div style="flex:1">
+      <div class="call bad" style="margin-top:0"><b>Чем это оборачивается.</b> Закупщик, не найдя условий и документов, уходит к поставщику, у которого они на виду. Покупатель, не найдя магазин, берёт продукт конкурента на той же полке.</div>
+      <div class="call ok"><b>В новом сайте:</b> на главной выбор «Я покупатель / Я закупщик»; раздел «Партнёрам» с вкладками Сети · Опт · HoReCa; «Где купить» с магазином, маршрутом и сетями; в каталоге можно собрать позиции в один запрос прайса.</div>
+    </div>
+  </div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 4</span></div>
+</section>
+
+<!-- 5. Скорость и техника -->
+<section class="page">
+  <p class="eyebrow">Раздел 4</p>
+  <h2><span class="n">4</span>Скорость и техника</h2>
+  <p class="lead">Сервер отвечает быстро (0,25–0,39 с), но страницы перегружены картинками и скриптами. На телефоне главный экран появляется через 10–12 секунд.</p>
+  <table>
+    <tr><th>Страница</th><th class="num">Телефон, из 100</th><th class="num">Главный экран, тел.</th><th class="num">Десктоп, из 100</th><th class="num">Главный экран, дескт.</th></tr>
+    <tr><td>Главная</td><td class="num">51</td><td class="num">10,9 с</td><td class="num">64–70</td><td class="num">3,1–3,8 с</td></tr>
+    <tr><td>Креветки, О компании, Новости, Полуфабрикаты, Рецепты</td><td class="num">49–55</td><td class="num">10,0–11,8 с</td><td class="num">64–70</td><td class="num">3,1–3,8 с</td></tr>
+  </table>
+  <p class="small">Lighthouse 12.8: телефон — медленный 4G и процессор в 4 раза слабее, это реалистичный худший случай. Норма Google для главного экрана — до 2,5 с.</p>
+  <div class="kpis">
+    <div class="kpi bad"><div class="v">25 МБ</div><div class="l">вес ленты новостей на телефоне после прокрутки, 248 запросов</div></div>
+    <div class="kpi bad"><div class="v">360 МБ</div><div class="l">исходники 596 картинок; 152 файла тяжелее 1 МБ</div></div>
+    <div class="kpi"><div class="v">256 / 11</div><div class="l">картинок в PNG против современного WebP</div></div>
+    <div class="kpi"><div class="v">609 КБ</div><div class="l">медвежонок в шапке, грузится на каждой странице</div></div>
+  </div>
+  <table>
+    <tr><th>Что не так</th><th>Чем мешает</th><th style="width:14%">Оценка</th></tr>
+    <tr><td>Лента /novosti: 94 карточки на одной странице, высота 70 534 px, GIF по 2,3 и 1,7 МБ</td><td>Страница «съедает» мобильный трафик и долго открывается</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>На главной 32 скрипта (1,31 МБ); Яндекс.Карта грузится сразу, а не по клику</td><td>Медленный первый экран</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>Работает старый Google Analytics UA-166790854-1 — Google отключил его в 2023 году</td><td>Лишний код и передача данных за рубеж</td><td><span class="tag">Улучшение</span></td></tr>
+    <tr><td>Видео VK на /magazin-polar задерживает загрузку до 9–18 с</td><td>Страница магазина открывается дольше всех</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>Нет <code>lang="ru"</code> ни на одной из 147 страниц; нет заголовков безопасности (ограничение Tilda)</td><td>Хуже для поиска и экранных дикторов</td><td><span class="tag">Улучшение</span></td></tr>
+    <tr><td>Битые ссылки: /nnovost-oir-niderlandi, href="null", 8 внешних с ошибкой 404/400</td><td>Посетитель попадает на ошибку</td><td><span class="tag warn">Важно</span></td></tr>
+  </table>
+  <div class="call ok"><b>Сильные стороны:</b> все 147 адресов отвечают 200, редиректы склеены, canonical на всех страницах, нет смешанного контента, Яндекс Метрика стоит на всех страницах.</div>
+  <div class="call blue"><b>Новый сайт:</b> Lighthouse на телефоне 90–94, главный экран — 3,4 с; десктоп 99–100 (локальный замер, те же настройки Lighthouse). Вес главной на телефоне 479 КБ вместо 1,59 МБ.</div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 5</span></div>
+</section>
+
+<!-- 6. Поиск и контент -->
+<section class="page">
+  <p class="eyebrow">Раздел 5</p>
+  <h2><span class="n">5</span>Поиск и контент</h2>
+  <p class="lead">Сайт находят в основном по названию компании. Запросы о товарах («креветки королевские 41/50 оптом», «филе минтая от производителя») забирают маркетплейсы и дистрибьюторы: у товаров ПОЛАР нет своих страниц.</p>
+  <div class="kpis">
+    <div class="kpi bad"><div class="v">0</div><div class="l">страниц товаров — у 112 позиций нет собственного адреса</div></div>
+    <div class="kpi"><div class="v">38</div><div class="l">страниц без описания для поиска; 8 групп одинаковых</div></div>
+    <div class="kpi"><div class="v">18</div><div class="l">страниц без заголовка H1, включая главную</div></div>
+    <div class="kpi"><div class="v">1052</div><div class="l">картинки без подписи (alt); у фото продукции — ни одной</div></div>
+  </div>
+  <table>
+    <tr><th>Что не так</th><th>Пример</th><th style="width:14%">Оценка</th></tr>
+    <tr><td>Заголовок главной без ключевых слов</td><td>«Полар Сифуд Раша - официальный сайт компании»</td><td><span class="tag bad">Критично</span></td></tr>
+    <tr><td>51 заголовок вида «Новость про …»</td><td>«Новость про Азербайждан» (с опечаткой), «Copy of …» на /new-year-2023</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>Чужие описания</td><td>Текст про фасоль на /novost-teploxod и /reportag; описание «Семейного дня с HAVAL» на новогодней странице</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>Нет разметки schema.org</td><td>Organization, Product, Recipe, BreadcrumbList — 0 страниц</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>Тонкие страницы</td><td>94 из 147 страниц — меньше 100 слов; /nagrady — 11 слов; бренды — 113–152 слова</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>Мусор в карте сайта</td><td>«Blank page» /page15651443.html, приглашение на собеседование, 6 страниц-сирот; у всех 147 адресов одна дата</td><td><span class="tag">Улучшение</span></td></tr>
+  </table>
+  <div class="grid2">
+    <div class="box"><h3>Устаревший контент</h3><p class="small" style="margin:0">Около 66 из 94 новостей — 2020–2023 годов: розыгрыш 2020 года (11 страниц), «скидка на ЕВРО-2021», вакансии 2021 года по 33–50 тыс. ₽, «Остаётся ли Polar в России?» (2022). Под адресом /prodexpo2015 — анонс 2025 года. Новости на главной — грамоты и поздравления, ни одной о продукции.</p></div>
+    <div class="box"><h3>Опечатки на виду</h3><p class="small" style="margin:0">«908/120» вместо 90/120 (креветки), «медальоны их лососевого», «с добавление рыб», «Мясо мидий замороженный», «FOODSERVISE», «С 27 по 20 сентября», латинская «c» в «cоответствуют», «мирного небе», «Телефон / факс: 7 (495)» без «+». Абзац о компании на /o-kompanii повторён дважды.</p></div>
+  </div>
+  <div class="call blue"><b>Новый сайт:</b> заголовки и описания под запросы, H1 на каждой странице, разметка Organization, у каждой позиции свой адрес карточки (#p=…), подписи у всех фото продукции, опечатки исправлены.</div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 6</span></div>
+</section>
+
+<!-- 7. Юридические риски и доверие -->
+<section class="page">
+  <p class="eyebrow">Раздел 6</p>
+  <h2><span class="n">6</span>Юридические риски и доверие</h2>
+  <p class="lead">Закупщик сети проверяет поставщика по сайту. Сейчас при проверке он видит ошибки, а часть сведений создаёт риски по закону о персональных данных и закону о рекламе.</p>
+  <div class="shots" style="margin-bottom:8px">
+    <figure class="shot"><img src="img/old-doc-404.jpg" alt=""><figcaption>«Политика по качеству» и «Политика безопасности» на /o-kompanii — «Файл не найден».</figcaption></figure>
+    <figure class="shot"><img src="img/old-doc-login.jpg" alt=""><figcaption>«Сертификат соответствия» просит войти в чужой Яндекс ID; по имени файла — 2019 год.</figcaption></figure>
+  </div>
+  <table>
+    <tr><th>Что не так</th><th>Риск</th><th style="width:14%">Оценка</th></tr>
+    <tr><td>Форма «Запросить прайс-лист» на всех 147 страницах: имя и телефон без согласия на обработку ПДн</td><td>152-ФЗ, штраф Роскомнадзора</td><td><span class="tag bad">Критично</span></td></tr>
+    <tr><td>Нет уведомления о cookie при работающем Вебвизоре, Google Analytics и Google Fonts</td><td>152-ФЗ, передача данных за рубеж</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>Политика ПДн — PDF на Яндекс.Диске (05.2024), не на сайте; 7 других ссылок сайта на Диск уже не работают</td><td>Ссылка может пропасть в любой момент</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>Около 40 ссылок на личные страницы победителей розыгрыша 2020 года; правила со списком документов (паспорт, ИНН, СНИЛС)</td><td>Персональные данные третьих лиц</td><td><span class="tag warn">Важно</span></td></tr>
+    <tr><td>«1-е место по качеству и безопасности» и «проверены Роскачеством» ведут на тест Росконтроля — организации перепутаны</td><td>Закон о рекламе, доверие</td><td><span class="tag bad">Критично</span></td></tr>
+    <tr><td>«ПД-ОВОС» на главной — 404; /sklad — уведомление об экологической экспертизе 2023 года вместо страницы склада</td><td>Ошибки при проверке поставщика</td><td><span class="tag warn">Важно</span></td></tr>
+  </table>
+  <div class="grid2">
+    <div class="call ok" style="margin:0"><b>Что подтверждается открытыми данными.</b> Филе минтая POLAR — 4,95 балла в исследовании Роскачества (2019) и Российский знак качества (новость 06.10.2024). «Внимание! Еда!» (2020): креветки Polar безопасны.</div>
+    <div class="call blue" style="margin:0"><b>Новый сайт:</b> согласие в каждой форме, обязательные поля и маска телефона; знак качества только с подтверждённой формулировкой; документы — по запросу вместе с прайсом, без битых ссылок.</div>
+  </div>
+  <p class="small" style="margin-top:8px">Выводы по 152-ФЗ и закону о рекламе — оценка рисков, не юридическое заключение; формулировки согласий стоит согласовать с юристом компании.</p>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 7</span></div>
+</section>
+
+<!-- 8. Карты -->
+<section class="page">
+  <p class="eyebrow">Раздел 7</p>
+  <h2><span class="n">7</span>Яндекс Карты, 2ГИС, Google</h2>
+  <p class="lead">Компания есть на всех трёх картах, но владелец подтвердил только 2 карточки из 10. Самая популярная карточка — производство (525 оценок) — оформлена как магазин 24/7 с московским телефоном.</p>
+  <table>
+    <tr><th>Карточка Яндекса</th><th>Статус</th><th class="num">Рейтинг</th><th class="num">Оценок / отзывов</th><th>Ответы на отзывы</th><th>Что не так</th></tr>
+    <tr><td><b>Офис</b>, Варшавское ш., 42</td><td><span class="tag ok">подтверждена</span></td><td class="num">4,3</td><td class="num">101 / 54</td><td>35 из 49</td><td>В соцсетях карточки только VK</td></tr>
+    <tr><td><b>Производство</b>, Кремёнки</td><td><span class="tag bad">не подтверждена</span></td><td class="num">4,6</td><td class="num">525 / 148</td><td>18 из 49</td><td>Рубрика «магазин», 24/7, телефон московский; местного (48432) 236-90 нет</td></tr>
+    <tr><td><b>Склад</b>, Булатниковская, 14</td><td><span class="tag bad">«Больше не работает»</span></td><td class="num">4,2</td><td class="num">17 / 4</td><td>0 из 4</td><td>Название «Полар», без телефона; номер с сайта 385-66-46 в Яндексе не находится</td></tr>
+    <tr><td><b>Cross Fish</b>, Варшавское ш., 42</td><td><span class="tag ok">подтверждена</span></td><td class="num">—</td><td class="num">0</td><td>—</td><td>Ведёт на crossfish.ru, а не на сайт ПОЛАР</td></tr>
+  </table>
+  <div class="grid2">
+    <div>
+      <h3>2ГИС</h3>
+      <p>Все три адреса на месте: офис 4,9 (25 оценок), склад 5,0 (9), производство 4,9 (12). Ни одна карточка не подтверждена: 2ГИС показывает «давно не обновляла данные». У производства московский телефон.</p>
+      <h3>Google Maps</h3>
+      <p>Офис — 3,7, открытие в 9:00 (в Яндексе 8:30). Кремёнки — 4,0, карточка не заявлена. <b>Дубль «Полар Сифуд Раша», Неглинная, 8/10 — рейтинг 1,0</b>, не заявлен. Склада в Google нет.</p>
+    </div>
+    <div>
+      <h3>Чем это оборачивается</h3>
+      <ul>
+        <li>Оптовик, который ищет склад, видит «Больше не работает» и звонит конкуренту.</li>
+        <li>По запросу бренда в Google рядом с офисом показывается «единица» со старым адресом.</li>
+        <li>Звонки на производство уходят в московский офис.</li>
+        <li>Неотвеченные отзывы с жалобами видят все, кто выбирает поставщика.</li>
+      </ul>
+      <div class="call warn" style="margin-top:6px"><b>Нужно от компании:</b> доступ к Яндекс Бизнесу и подтверждение по телефону или письмом — без этого карточки править нельзя.</div>
+    </div>
+  </div>
+  <div class="call ok"><b>Что даст порядок в картах:</b> 4 точки × 3 сервиса — подтверждены, с верными телефонами, часами, фото цеха и магазина и витриной «Товары» в Яндекс Бизнесе. Карты — бесплатный источник звонков и маршрутов к фирменному магазину.</div>
+  <p class="small">Источник: открытые данные карточек Яндекс Карт, 2ГИС и Google на 11.10.2026. Ссылки на карточки — в приложении к отчёту по запросу.</p>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 8</span></div>
+</section>
+
+<!-- 9. Отзывы, соцсети, конкуренты -->
+<section class="page">
+  <p class="eyebrow">Раздел 8</p>
+  <h2><span class="n">8</span>Отзывы, соцсети, конкуренты</h2>
+  <p class="lead">Покупатели хвалят продукт и магазин при заводе, а повторяющиеся жалобы касаются одной темы — глазури и веса нетто. Ответ на неё может стать преимуществом, если рассказать о ней открыто.</p>
+  <div class="grid2">
+    <div class="box"><h3>Хвалят</h3><p class="small" style="margin:0">Креветки «с икрой», «без льда», магазин при заводе, быструю доставку опта.</p></div>
+    <div class="box"><h3>Жалуются</h3><p class="small" style="margin:0">Лёд и глазурь в креветках 70/90 («180 г льда на 500 г»), «каша» в тресковых треугольниках, горечь филе камбалы, посторонние включения. Много однотипных пятёрок «брал в Ленте/Ашане» — такие Яндекс может отфильтровать.</p></div>
+  </div>
+  <table>
+    <tr><th>Канал</th><th class="num">Подписчики</th><th>Активность</th><th>Что улучшить</th></tr>
+    <tr><td>Telegram @polarrussia</td><td class="num">740</td><td>~3 поста в неделю, 52–362 просмотра</td><td>Связать посты с местами продаж и акциями</td></tr>
+    <tr><td>ВКонтакте vk.com/buyseafood</td><td class="num">1 174</td><td>0–2 реакции на пост, комментарии закрыты</td><td>Открыть комментарии, розыгрыши, посевы</td></tr>
+    <tr><td>Дзен, Яндекс Ритм, MAX</td><td class="num">—</td><td colspan="2">Каналы есть; число подписчиков проверить не удалось (нужен вход)</td></tr>
+  </table>
+  <h3>Как это сделано у конкурентов</h3>
+  <table>
+    <tr><th style="width:18%">Компания</th><th>Чем сайт сильнее</th><th style="width:22%">Есть у ПОЛАР в новом сайте</th></tr>
+    <tr><td>VICI</td><td>Карточка на каждый товар, фильтр, рецепты</td><td><span class="tag ok">да</span> карточки, фильтр, поиск</td></tr>
+    <tr><td>ЮНИФРОСТ (AGAMA, «Меридиан»)</td><td>B2B-каталог, «География закупок», документы, «Запросить прайс»</td><td><span class="tag ok">да</span> раздел «Партнёрам»</td></tr>
+    <tr><td>«Меридиан»</td><td>Каталог с карточками, книга рецептов, пресс-центр</td><td><span class="tag ok">да</span> рецепты, СМИ</td></tr>
+    <tr><td>Норебо</td><td>Цифры производства, сертификат FSSC, склад −25 °C</td><td><span class="tag blue">проверим</span> нужны данные завода</td></tr>
+  </table>
+  <div class="call warn"><b>Бренд в поиске.</b> Латиницей «Polar Seafood» занята датская Polar Seafood и американская MW Polar. Продвигать стоит русское написание: «ПОЛАР креветки», «Полар Сифуд Раша», «Chef Polar».</div>
+  <div class="call blue"><b>Где продаётся (открытые данные):</b> ВкусВилл — филе угря Polar (4,3, 33 оценки); Chef Polar — Перекрёсток и Утконос; в отзывах — Ашан, Лента, Магнит, О'КЕЙ, Ароматный Мир. На сайте компании нет ни одной ссылки на сети и маркетплейсы.</div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 9</span></div>
+</section>
+
+<!-- 10. Новый сайт -->
+<section class="page">
+  <p class="eyebrow">Раздел 9</p>
+  <h2><span class="n">9</span>Новый сайт ПОЛАР</h2>
+  <p class="lead">Мы сделали новый сайт на реальных материалах компании: фото завода и упаковок, логотипы, тексты, 112 позиций каталога. Атмосферные кадры для разделов «Сети» и «HoReCa» созданы нейросетью Higgsfield — без логотипов и чужой продукции.</p>
+  <div class="shots" style="margin-bottom:8px">
+    <figure class="shot"><img src="img/new-home-d.jpg" alt=""><figcaption>Главная: продукция на первом экране, цифры доверия, два пути — покупатель и закупщик.</figcaption></figure>
+    <figure class="shot"><img src="img/new-partners-d.jpg" alt=""><figcaption>«Партнёрам»: вкладки Сети · Опт · HoReCa, шаги до первой поставки, форма с типом клиента.</figcaption></figure>
+  </div>
+  <div class="shots" style="margin-bottom:8px">
+    <figure class="shot"><img src="img/new-cat-d.jpg" alt=""><figcaption>Каталог: поиск, фильтры по разделам и «Розница / Опт», «+» собирает позиции в один запрос прайса.</figcaption></figure>
+    <figure class="shot"><img src="img/new-chain-d.jpg" alt=""><figcaption>«От океана до полки»: путь продукта с фото завода, шкала заполняется при прокрутке.</figcaption></figure>
+  </div>
+  <div class="grid3">
+    <div class="box"><h3>Продаёт</h3><p class="small" style="margin:0">Каталог с карточками, запрос прайса по выбранным позициям, «Где купить» с маршрутом к магазину.</p></div>
+    <div class="box"><h3>Вызывает доверие</h3><p class="small" style="margin:0">Завод, цифры, знак качества, СМИ, история компании — на виду, а не в глубине сайта.</p></div>
+    <div class="box"><h3>Запоминается</h3><p class="small" style="margin:0">Тёмно-синяя «арктическая» стилистика, падающие снежинки, анимация цифр и путь продукта.</p></div>
+  </div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 10</span></div>
+</section>
+
+<!-- 11. На телефоне + цифры -->
+<section class="page">
+  <p class="eyebrow">Раздел 9</p>
+  <h2><span class="n">9</span>Новый сайт на телефоне</h2>
+  <p class="lead">Сайт сделан от телефона: крупный текст, кнопки не меньше 44 px, нижняя панель действий, карточка товара открывается снизу, как в приложении.</p>
+  <div class="shots" style="margin-bottom:10px">
+    <figure class="shot ph"><img src="img/new-home-m.jpg" alt=""><figcaption>Первый экран: продукция, кнопки каталога и партнёрства.</figcaption></figure>
+    <figure class="shot ph"><img src="img/new-cat-m.jpg" alt=""><figcaption>Каталог: поиск и фильтры.</figcaption></figure>
+    <figure class="shot ph"><img src="img/new-product-m.jpg" alt=""><figcaption>Карточка товара: фасовка, калибр, обработка.</figcaption></figure>
+    <figure class="shot ph"><img src="img/new-price-m.jpg" alt=""><figcaption>Запрос прайса: тип клиента, маска телефона, согласие.</figcaption></figure>
+  </div>
+  <table>
+    <tr><th>Показатель</th><th class="num">Сейчас</th><th class="num">Новый сайт</th></tr>
+    <tr><td>Lighthouse, телефон (из 100)</td><td class="num">49–55</td><td class="num"><b>90–94</b></td></tr>
+    <tr><td>Lighthouse, десктоп (из 100)</td><td class="num">64–70</td><td class="num"><b>99–100</b></td></tr>
+    <tr><td>Главный экран на телефоне</td><td class="num">10,9 с</td><td class="num"><b>3,4 с</b></td></tr>
+    <tr><td>Вес главной на телефоне</td><td class="num">1,59 МБ</td><td class="num"><b>0,48 МБ</b></td></tr>
+    <tr><td>SEO / Best Practices (Lighthouse)</td><td class="num">92–100 / 75–78</td><td class="num"><b>100 / 100</b></td></tr>
+    <tr><td>Страниц без мобильной версии</td><td class="num">7</td><td class="num"><b>0</b></td></tr>
+  </table>
+  <div class="grid3"><div class="box"><h3>Без подписок</h3><p class="small" style="margin:0">Сайт не зависит от Tilda: чистый код, размещается на любом хостинге компании.</p></div><div class="box"><h3>Каталог из одного файла</h3><p class="small" style="margin:0">Позиции, фасовки и фото обновляются в одном месте — меняются на всех страницах сразу.</p></div><div class="box"><h3>Заявки — куда удобно</h3><p class="small" style="margin:0">Почта, CRM или Telegram отдела продаж: подключаем при запуске.</p></div></div>
+  <p class="small">Новый сайт замерен локально с теми же настройками Lighthouse 12.8; на хостинге с CDN и сжатием результат будет таким же или лучше.</p>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 11</span></div>
+</section>
+
+<!-- 12. Было → стало -->
+<section class="page">
+  <p class="eyebrow">Раздел 10</p>
+  <h2><span class="n">10</span>Было → стало</h2>
+  <p class="lead">Каждая проблема аудита и то, как её решает новый сайт.</p>
+  <table>
+    <tr><th style="width:42%">Было</th><th>Стало в новом сайте</th></tr>
+    <tr><td>Каталог на телефоне нечитаем (ширина 1280 px)</td><td>Вся вёрстка от телефона, 0 горизонтальной прокрутки на всех страницах</td></tr>
+    <tr><td>Нет страниц товаров, поиска и фильтров</td><td>112 карточек со своим адресом, поиск по названию и калибру, фильтры по разделам и «Розница / Опт»</td></tr>
+    <tr><td>Нет «Где купить», магазин спрятан в новостях</td><td>Раздел «Где купить»: фирменный магазин, часы, маршрут, карта по клику, сети, форма «подскажем в вашем городе»</td></tr>
+    <tr><td>Нет раздела для оптовиков</td><td>«Партнёрам»: Сети · Опт · HoReCa, шаги до поставки, производство, документы по запросу</td></tr>
+    <tr><td>Форма прайса без согласия, пустые заявки</td><td>Обязательные имя и телефон, маска +7, e-mail, тип клиента, согласие, сообщение о сроке ответа</td></tr>
+    <tr><td>Запрос прайса «вообще», без позиций</td><td>Кнопка «+» на карточке собирает позиции в один запрос — менеджер видит, что нужно клиенту</td></tr>
+    <tr><td>Подписка навязывается 4 раза, автопопап</td><td>Один блок соцсетей, без всплывающих окон</td></tr>
+    <tr><td>Телефоны склада и завода не кликабельны</td><td>Все телефоны и почта — в одно касание; нижняя панель «Позвонить» на телефоне</td></tr>
+    <tr><td>Документы о качестве: 3 из 4 не открываются</td><td>Документы высылаются вместе с прайсом; битых ссылок нет</td></tr>
+    <tr><td>Новости вперемешку, на главной — грамоты</td><td>Новости по дате, на главной — жизнь компании без поздравлений</td></tr>
+    <tr><td>Нет H1, разметки, подписей фото; 38 страниц без описания</td><td>H1 и описание на каждой странице, Organization schema.org, подписи у всех фото продукции</td></tr>
+    <tr><td>Меню: «Благотворительность» наравне с «Продукцией»</td><td>Меню: Продукция · Где купить · Партнёрам · О компании · Контакты; награды, СМИ и помощь — в «О компании»</td></tr>
+    <tr><td>Опечатки («908/120», «медальоны их…»)</td><td>Исправлены в каталоге</td></tr>
+    <tr><td>Главный экран на телефоне 10,9 с</td><td>3,4 с; картинки WebP, карта и видео — по клику</td></tr>
+  </table>
+  <div class="call warn"><b>Перед запуском согласуем с компанией:</b> список сетей и маркетплейсов, телефон магазина, режим отгрузки склада, актуальные документы о качестве, куда приходят заявки (почта, CRM или Telegram).</div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 12</span></div>
+</section>
+
+<!-- 13. Точки роста -->
+<section class="page">
+  <p class="eyebrow">Раздел 11</p>
+  <h2><span class="n">11</span>Точки роста</h2>
+  <p class="lead">Новый сайт — основа. На нём строятся каналы, которые сейчас не работают или работают вполсилы.</p>
+  <table>
+    <tr><th style="width:4%">#</th><th style="width:27%">Точка роста</th><th>Что делаем</th><th style="width:24%">Что даёт бизнесу</th></tr>
+    <tr><td>1</td><td><b>Поиск по товарам</b></td><td>Страницы под запросы «креветки королевские оптом», «филе минтая от производителя», тексты разделов и брендов</td><td>Заявки от тех, кто ищет товар, а не название компании</td></tr>
+    <tr><td>2</td><td><b>Карты: 4 точки × 3 сервиса</b></td><td>Подтверждение, телефоны, часы, фото, витрина «Товары», ответы на все отзывы</td><td>Звонки и маршруты к магазину; снятие «закрыт» со склада</td></tr>
+    <tr><td>3</td><td><b>Поиск новых контрагентов</b></td><td>База сетей, дистрибьюторов и HoReCa по регионам; рассылки и звонки с прайсом и каталогом</td><td>Новые точки продаж в регионах, где ПОЛАР пока нет</td></tr>
+    <tr><td>4</td><td><b>Реклама под сегменты</b></td><td>Яндекс Директ и ВКонтакте отдельно на закупщиков и на покупателей «где купить»</td><td>Измеримый поток заявок</td></tr>
+    <tr><td>5</td><td><b>Маркетплейсы</b></td><td>Официальные витрины бренда на Ozon, Wildberries, Яндекс Маркете; кнопка «Купить онлайн»</td><td>Продажи там, где покупатель уже ищет</td></tr>
+    <tr><td>6</td><td><b>Открыто о глазури</b></td><td>Страница «Глазурь и вес нетто», ответы на отзывы, QR на упаковке — отзыв в Яндексе</td><td>Повторяющаяся жалоба становится аргументом доверия</td></tr>
+    <tr><td>7</td><td><b>Видео завода</b></td><td>Съёмка производства и магазина, ролики для сайта, карт и соцсетей</td><td>Сильнейший аргумент для сетей и покупателей</td></tr>
+    <tr><td>8</td><td><b>Аналитика и CRM</b></td><td>Цели Метрики на формы и звонки, заявки сразу в CRM, учёт источника каждой сделки</td><td>Видно, какой канал приносит деньги</td></tr>
+  </table>
+  <div class="grid2">
+    <div class="box"><h3>Цифры компании, которые стоит показывать</h3><p class="small" style="margin:0">850 контрагентов · 71 регион + Беларусь, Казахстан, Узбекистан · сырьё из 13 стран · завод с 2013 года · склад на 7 500 паллетомест (МК, 05.05.2026) · план нового автоматизированного комплекса к маю 2027 года.</p></div>
+    <div class="box"><h3>Что усиливает бренд</h3><p class="small" style="margin:0">Детская линейка «Медвежонок» — отдельная история для родителей; Chef Polar — лицо шеф-повара; рецепты, связанные с товарами; посты о жизни завода вместо одних поздравлений.</p></div>
+  </div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 13</span></div>
+</section>
+
+<!-- 14. Предложение -->
+<section class="page">
+  <p class="eyebrow">Раздел 12</p>
+  <h2><span class="n">12</span>Один подрядчик на всё цифровое</h2>
+  <p class="lead">Новый сайт уже готов, его запуск входит в первый месяц. Дальше берём на себя всё цифровое продвижение ПОЛАР: от сайта и карт до поиска новых контрагентов. Вместо нескольких подрядчиков — одна команда, которая знает бизнес изнутри и всегда на связи.</p>
+  <div class="price">
+    <div>
+      <div class="sum">60 000 ₽<small>в месяц</small></div>
+      <div class="sub">За всё, без разбивки и доплат за отдельные направления. Без НДС.</div>
+    </div>
+    <ul class="checks">
+      <li>Запуск нового сайта и его развитие</li>
+      <li>SEO-продвижение в Яндексе и Google</li>
+      <li>Яндекс Карты, 2ГИС, Google: все карточки и отзывы</li>
+      <li>Поиск новых контрагентов: сети, опт, HoReCa</li>
+      <li>Реклама: Яндекс Директ, ВКонтакте</li>
+      <li>Узнаваемость бренда: соцсети и контент</li>
+      <li>Аналитика: Метрика, цели, заявки</li>
+      <li>Любые текущие задачи</li>
+    </ul>
+  </div>
+  <p class="small" style="margin:-2px 0 10px">Рекламный бюджет площадок (Яндекс Директ, ВКонтакте) оплачивается отдельно, напрямую площадкам.</p>
+  <div class="grid2">
+    <div class="box light">
+      <h3>Приоритет в разработке</h3>
+      <p class="small">Когда компании понадобится новая разработка, она идёт к нам вне очереди и по отдельной смете:</p>
+      <ul class="checks">
+        <li>ИИ-ассистенты для продаж и поддержки клиентов</li>
+        <li>Автоматизация бизнес-процессов</li>
+        <li>CRM и система управления бизнесом</li>
+        <li>Цифровой двойник компании: продажи, склад, производство на одном экране</li>
+      </ul>
+    </div>
+    <div class="box light">
+      <h3>Почему так удобнее</h3>
+      <ul class="checks">
+        <li><b>Один ответственный</b> за всё цифровое — не нужно координировать подрядчиков</li>
+        <li><b>Всегда на связи</b> — один чат для любых задач</li>
+        <li><b>Результат уже на столе</b> — новый сайт готов до подписания договора</li>
+        <li><b>Без долгих обязательств</b> — оплата помесячно, расторжение с уведомлением за 14 дней</li>
+        <li><b>Отчёт о работе</b> — в любой момент по запросу</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Что компания получает уже в первый месяц</h3>
+  <div class="kpis" style="margin-top:4px">
+    <div class="kpi acc"><div class="v" style="font-size:18px">Новый сайт</div><div class="l">запущен на домене, заявки приходят отделу продаж</div></div>
+    <div class="kpi acc"><div class="v" style="font-size:18px">Карты</div><div class="l">склад и производство исправлены, дубль в Google снят</div></div>
+    <div class="kpi acc"><div class="v" style="font-size:18px">Отзывы</div><div class="l">ответы на неотвеченные отзывы в Яндексе</div></div>
+    <div class="kpi acc"><div class="v" style="font-size:18px">Контрагенты</div><div class="l">первая волна предложений сетям и опту</div></div>
+  </div>
+  <div class="call ok"><b>Как начнём.</b> Неделя 1 — согласуем сайт и материалы, получаем доступы к картам и Метрике. Неделя 2 — запуск сайта и формы заявок, подтверждение карточек. Недели 3–4 — SEO-страницы товаров, ответы на отзывы, первая волна поиска контрагентов.</div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 14</span></div>
+</section>
+
+<!-- 15. Последний лист -->
+<section class="page">
+  <h2>Что нужно от компании для старта</h2>
+  <p class="lead">Чтобы запустить сайт и навести порядок в картах в первый месяц, понадобится немного.</p>
+  <ol class="steps">
+    <li><b>Решение о запуске нового сайта</b><span class="why">Покажем его вживую, внесём правки по тексту и фото до запуска.</span></li>
+    <li><b>Доступ к домену и Tilda</b><span class="why">Перенесём адреса старых страниц, чтобы не потерять позиции в поиске.</span></li>
+    <li><b>Доступ к Яндекс Бизнесу, 2ГИС и Google</b><span class="why">Подтвердим карточки, исправим телефоны и статус склада, удалим дубль.</span></li>
+    <li><b>Актуальные документы</b><span class="why">Декларации, политика качества, политика ПДн — разместим на сайте компании.</span></li>
+    <li><b>Список сетей и маркетплейсов</b><span class="why">Для раздела «Где купить» и кнопок на карточках.</span></li>
+    <li><b>Контакт отдела продаж</b><span class="why">Куда направлять заявки: почта, CRM или Telegram.</span></li>
+  </ol>
+  <div class="grid2" style="margin-top:10px">
+    <div class="box"><h3>Что уже готово</h3><ul style="margin:0"><li>Новый сайт: 7 страниц, каталог 112 позиций</li><li>Мобильная версия и быстрая загрузка</li><li>Формы с согласием и запросом по позициям</li><li>Аудит: 147 страниц, 10 карточек на картах</li></ul></div>
+    <div class="box"><h3>Где посмотреть сайт</h3><p class="small" style="margin:0">Покажем на встрече или пришлём ссылку на тестовую версию. Сайт работает без Tilda и подписок: его можно разместить на любом хостинге компании.</p></div>
+  </div>
+  <div class="call blue" style="margin-top:12px"><b>Следующий шаг:</b> короткая встреча на 30 минут — покажем сайт на телефоне и ответим на вопросы.</div>
+  <div class="sig" style="margin-top:22px;border-top:1px solid var(--line);padding-top:12px">
+    <div><img class="fflogo" src="../brand/futureflow-logo.png" alt="FutureFlow"><div class="small" style="margin-top:4px">futureflow.ru · hello@futureflow.ru · +7 925 904-01-11</div></div>
+    <div class="small">11 октября 2026</div>
+  </div>
+  <div class="foot"><span>Аудит ПОЛАР · <b>FutureFlow</b></span><span>стр. 15</span></div>
+</section>
+
+</body>
+</html>
