@@ -2,16 +2,17 @@
 # Боевой адрес https://www.polarseafood.ru/ в canonical, OG и sitemap подменяется на адрес Pages,
 # все страницы закрываются от индексации (noindex), чтобы превью не попало в поиск как дубль.
 name: Pages preview
+# Окружение github-pages пускает только ветку по умолчанию; пока ею числится ветка сессии — публикуем и из неё.
 on:
   push:
-    branches: [main]
+    branches: [main, claude/affectionate-brahmagupta-qzxu77]
   workflow_dispatch:
 permissions:
   contents: read
   pages: write
   id-token: write
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   deploy:
