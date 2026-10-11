@@ -378,7 +378,7 @@ body.menu-open{overflow:hidden}
 .search input:focus{outline:0;border-color:var(--brand)}
 .search svg{position:absolute;left:16px;top:50%;width:20px;height:20px;transform:translateY(-50%);color:var(--muted)}
 .toggle{display:flex;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:3px;flex:none}
-.toggle button{min-height:42px;padding:0 14px;border-radius:999px;font-weight:800;font-size:13px;color:var(--muted)}
+.toggle button{min-height:44px;padding:0 14px;border-radius:999px;font-weight:800;font-size:13px;color:var(--muted)}
 .toggle button.on{background:var(--navy);color:#fff}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0 2px;scrollbar-width:none;margin:0 calc(var(--gut)*-1);padding-left:var(--gut);padding-right:var(--gut)}
 .chips::-webkit-scrollbar{display:none}

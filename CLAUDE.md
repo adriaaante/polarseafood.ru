@@ -7,6 +7,7 @@ Cross Fish, «Медвежонок»), производитель заморож
 
 ## Структура проекта
 - `site/` — новый сайт: `index`, `catalog`, `partners`, `gde-kupit`, `about`, `contacts`, `404` (.html), `assets/{css,js,img,fonts}`.
+- `site/tovar/*.html` (112 шт.), `sitemap.xml`, `robots.txt`, OG-теги и блоки `<!--@gen:…-->` (каталог, плитки главной) — **генерирует** `tools/build.py`.
 - `site/assets/js/data.js` — **генерируется** `tools/build.py` из `_materials/content/content.json`, руками не править.
 - `tools/partials/{header,footer,modals}.html` — общие шапка/подвал/модалки; в страницы вставляются между маркерами
   `<!--@header-->…<!--/@header-->`. Правишь шапку — только в partials, потом `build.py`.
@@ -21,6 +22,11 @@ Cross Fish, «Медвежонок»), производитель заморож
   разработки (ИИ, автоматизация, CRM, цифровой двойник) — в приоритете и по отдельной смете. КП и аудит — одним документом.
 - Журнал работ — `_materials/promo-log.md`; документов (договор/счёт) пока нет, префикс клиента не согласован.
 
+## Деплой
+- Превью: GitHub Pages из `main` через `.github/workflows/pages.yml` (публикуется только `site/`; боевой домен
+  подменяется на адрес Pages, все страницы `noindex`). Адрес: https://adriaaante.github.io/polarseafood.ru/ ;
+  в настройках репо Pages → Source: GitHub Actions; репозиторий должен быть публичным.
+
 ## Команды
 - `python3 tools/build.py` — после правки контента или partials (печатает число товаров и страниц).
 - Локальный просмотр: `cd site && python3 -m http.server 8765`.
@@ -29,6 +35,9 @@ Cross Fish, «Медвежонок»), производитель заморож
 ## Грабли
 - Картинки с белым фоном (JPEG) в карточках: `mix-blend-mode:multiply`, не drop-shadow (давал квадратную тень).
 - Unbounded — `font-display:optional` (со swap CLS 0,14–0,3 из-за ширины шрифта).
+- LCP: не вешать анимацию появления (`.rv`, `.split-words`) на H1 и лид первого экрана — Lighthouse ждёт её конца (+1–2 с).
+- Скрипты `defer`; инлайн-скрипты страниц обёрнуты в DOMContentLoaded (иначе `POLAR` ещё не определён).
+- Карточка товара — `<article>` со ссылкой-растяжкой `.pn::after`; кнопку «+» в `<a>` не вкладывать.
 - Опечатка исходного сайта «908/120» исправлена в `build.py` (FIXES) → «90/120».
 - Higgsfield: на тарифе «grace period» дневной лимит генераций — после ~5 картинок отказ до следующего дня.
 - Сайт клиента отдаёт 403 при частых запросах (DDoS-Guard) — скачивать с паузами.
