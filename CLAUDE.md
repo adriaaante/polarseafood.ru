@@ -25,7 +25,10 @@ Cross Fish, «Медвежонок»), производитель заморож
 ## Деплой
 - Превью: GitHub Pages из `main` через `.github/workflows/pages.yml` (публикуется только `site/`; боевой домен
   подменяется на адрес Pages, все страницы `noindex`). Адрес: https://adriaaante.github.io/polarseafood.ru/ ;
-  в настройках репо Pages → Source: GitHub Actions; репозиторий должен быть публичным.
+  в настройках репо Pages → Source: GitHub Actions; репозиторий публичный (с 11.10.2026).
+- ⚠ ГРАБЛИ Pages (11.10.2026): веткой по умолчанию числится `claude/affectionate-brahmagupta-qzxu77`, а окружение
+  github-pages пускает только её — запуски из `main` падали за 2 с без логов. Поэтому workflow слушает обе ветки;
+  если в Settings сменить ветку по умолчанию на `main`, ветку сессии из `on.push.branches` можно убрать.
 
 ## Команды
 - `python3 tools/build.py` — после правки контента или partials (печатает число товаров и страниц).
