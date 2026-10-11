@@ -1,0 +1,38 @@
+# Превью нового сайта на GitHub Pages: публикуется только папка site/.
+# Боевой адрес https://www.polarseafood.ru/ в canonical, OG и sitemap подменяется на адрес Pages,
+# все страницы закрываются от индексации (noindex), чтобы превью не попало в поиск как дубль.
+name: Pages preview
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Prepare preview
+        env:
+          BASE: ${{ steps.pages.outputs.base_url }}
+        run: |
+          cp -r site _site
+          find _site -name '*.html' -o -name '*.xml' -o -name '*.txt' | xargs sed -i "s#https://www.polarseafood.ru/#${BASE}/#g"
+          find _site -name '*.html' | xargs sed -i 's#<meta charset="utf-8">#<meta charset="utf-8"><meta name="robots" content="noindex, nofollow">#'
+          printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -5,10 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Партнёрам — поставки морепродуктов оптом от производителя ПОЛАР</title>
 <meta name="description" content="Поставки замороженных морепродуктов, рыбы и полуфабрикатов для торговых сетей, оптовых компаний и HoReCa от производителя. Собственный завод, около 850 контрагентов, 71 регион России.">
-<link rel="canonical" href="https://www.polarseafood.ru/partners">
+<meta property="og:type" content="website"><meta property="og:site_name" content="ПОЛАР"><meta property="og:title" content="Партнёрам — поставки морепродуктов оптом от производителя ПОЛАР"><meta property="og:description" content="Поставки замороженных морепродуктов, рыбы и полуфабрикатов для торговых сетей, оптовых компаний и HoReCa от производителя. Собственный завод, около 850 контрагентов, 71 регион России."><meta property="og:url" content="https://www.polarseafood.ru/partners.html"><meta property="og:image" content="https://www.polarseafood.ru/assets/img/og.jpg"><meta property="og:locale" content="ru_RU"><meta name="twitter:card" content="summary_large_image">
+
+
+
+
+
+
+
+<link rel="canonical" href="https://www.polarseafood.ru/partners.html">
 <meta name="theme-color" content="#061A2E">
 <link rel="icon" href="assets/img/favicon.ico">
 <link rel="preload" href="assets/fonts/unbounded-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -80,7 +89,7 @@
   <div class="mist"></div><canvas id="snow" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="crumbs"><a href="index.html">Главная</a> / Партнёрам</div>
-    <h1 class="split-words">Поставки морепродуктов <em>от&nbsp;производителя</em></h1>
+    <h1>Поставки морепродуктов <em>от&nbsp;производителя</em></h1>
     <p class="lead">Работаем с торговыми сетями, оптовыми компаниями и HoReCa. Собственный завод, пять марок и более 110 позиций — фасованных и весовых.</p>
     <div class="hero-cta rv d3"><button class="btn btn-ice" data-open="price">Запросить прайс-лист <svg><use href="#i-arrow"/></svg></button><a class="btn btn-ghost" href="tel:+74956401525"><svg><use href="#i-phone"/></svg>Отдел продаж</a></div>
     <div class="stats rv d4">
@@ -258,15 +267,17 @@
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <!--/@modals-->
-<script src="assets/js/data.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/main.js" defer></script>
 <script>
+addEventListener("DOMContentLoaded", () => {
 (() => {
   const tabs = [...document.querySelectorAll("[data-tab]")], panels = [...document.querySelectorAll("[data-panel]")];
   const show = k => { tabs.forEach(t => { t.classList.toggle("on", t.dataset.tab === k); t.setAttribute("aria-selected", t.dataset.tab === k); }); panels.forEach(p => p.classList.toggle("on", p.dataset.panel === k)); };
   tabs.forEach(t => t.addEventListener("click", () => show(t.dataset.tab)));
   const h = location.hash.slice(1); if (["retail", "opt", "horeca"].includes(h)) { show(h); setTimeout(() => document.getElementById(h).scrollIntoView({ block: "center" }), 200); }
 })();
+});
 </script>
 </body>
 </html>

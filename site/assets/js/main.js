@@ -86,6 +86,15 @@
     });
   }
 
+  /* ---------- glow + hero packs parallax ---------- */
+  if (!reduce && matchMedia("(hover:hover)").matches) {
+    document.addEventListener("pointermove", e => {
+      const d = e.target.closest?.(".dark"); if (d) { const r = d.getBoundingClientRect(); d.style.setProperty("--mx", (e.clientX - r.left) + "px"); d.style.setProperty("--my", (e.clientY - r.top) + "px"); }
+    }, { passive: true });
+    const packs = $(".packs");
+    packs && addEventListener("pointermove", e => { const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5; packs.style.transform = `translate3d(${x * -24}px,${y * -18}px,0)`; }, { passive: true });
+  }
+
   /* ---------- rails ---------- */
   $$("[data-rail]").forEach(nav => {
     const rail = $(nav.dataset.rail);
@@ -140,28 +149,26 @@
 
   /* product card + details */
   const catTitle = slug => D.cats.find(c => c.slug === slug)?.title || "";
-  const card = p => `<article class="pcard" data-pid="${p.id}" tabindex="0" aria-label="${esc(p.name)}">
-      ${p.badge ? `<span class="pill coral flag">★ ${esc(p.badge)}</span>` : p.bulk ? `<span class="pill dark flag">Опт</span>` : ""}
-      <button class="add" data-add="${p.id}" aria-label="Добавить в запрос прайса" aria-pressed="false"><svg><use href="#i-plus"/></svg></button>
-      <div class="ph"><img src="${p.img}" alt="${esc(p.name)}" loading="lazy" decoding="async"></div>
-      <div class="pb"><div class="pn">${esc(p.name)}</div><div class="pm">${p.weight ? `<span class="pill">${esc(p.weight)}</span>` : ""}${p.size ? `<span class="pill">калибр ${esc(p.size.split(",")[0])}${p.size.includes(",") ? "…" : ""}</span>` : ""}</div></div>
-    </article>`;
+  const base = document.querySelector('link[rel=stylesheet]').getAttribute('href').startsWith('../') ? '../' : '';
+  const card = p => `<article class="pcard" data-pid="${p.id}">${p.badge ? `<span class="pill coral flag">★ ${esc(p.badge)}</span>` : p.bulk ? `<span class="pill dark flag">Опт</span>` : ""}<button class="add" type="button" data-add="${p.id}" aria-label="Добавить в запрос прайса" aria-pressed="false"><svg><use href="#i-plus"/></svg></button><div class="ph"><img src="${base}${p.img}" alt="${esc(p.name)}" loading="lazy" decoding="async"></div><div class="pb"><a class="pn" href="${base}tovar/${p.id}.html">${esc(p.name)}</a><div class="pm">${p.weight ? `<span class="pill">${esc(p.weight)}</span>` : ""}${p.size ? `<span class="pill">калибр ${esc(p.size.split(",")[0])}${p.size.includes(",") ? "…" : ""}</span>` : ""}</div></div></article>`;
   window.POLAR_CARD = card;
   const showProduct = id => {
     const p = byId(id); if (!p) return;
     const rows = [["Раздел", catTitle(p.cat)], ["Фасовка", p.weight], ["Калибр", p.size], ["Обработка", p.desc], ["Формат", p.bulk ? "Весовая продукция для опта и HoReCa" : "Фасованная продукция для розницы"]].filter(r => r[1]);
-    $("#pd").innerHTML = `<div class="pd"><div class="ph"><img src="${p.img}" alt="${esc(p.name)}"></div><div>
+    $("#pd").innerHTML = `<div class="pd"><div class="ph"><img src="${base}${p.img}" alt="${esc(p.name)}"></div><div>
       <p class="eyebrow">${esc(catTitle(p.cat))}</p><h3>${esc(p.name)}</h3>
       ${p.badge ? `<p><span class="pill coral">★ ${esc(p.badge)}</span></p>` : ""}
       <dl class="spec">${rows.map(r => `<div><dt>${r[0]}</dt><dd>${esc(r[1])}</dd></div>`).join("")}</dl>
       <div class="acts"><button class="btn btn-brand" data-add="${p.id}" data-label="1"><svg><use href="#i-plus"/></svg> Добавить в запрос</button><button class="btn btn-line" data-open="price">Узнать цену</button></div>
-      <p class="note">Состав, пищевая ценность и документы о качестве — отправим вместе с прайсом. <a class="link-arrow" href="gde-kupit.html">Где купить</a></p>
+      <p class="note">Состав, пищевая ценность и документы о качестве — отправим вместе с прайсом. <a class="link-arrow" href="${base}tovar/${p.id}.html">Страница товара</a></p>
     </div></div>`;
     syncReq(); openModal("m-product");
     if (!location.hash.startsWith("#p=" + id)) history.replaceState(null, "", "#p=" + id);
   };
-  document.addEventListener("click", e => { const c = e.target.closest(".pcard"); if (c && !e.target.closest("[data-add]")) showProduct(c.dataset.pid); });
-  document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.classList?.contains("pcard")) showProduct(e.target.dataset.pid); });
+  document.addEventListener("click", e => {
+    const c = e.target.closest(".pcard"); if (!c || e.target.closest("[data-add]") || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+    e.preventDefault(); showProduct(c.dataset.pid);
+  });
 
   /* ---------- forms ---------- */
   const mask = inp => inp.addEventListener("input", () => {

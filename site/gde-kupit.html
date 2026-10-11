@@ -5,10 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Где купить продукцию ПОЛАР — фирменный магазин и торговые сети</title>
 <meta name="description" content="Где купить креветки, морепродукты и рыбную кулинарию ПОЛАР: фирменный магазин при заводе в Кремёнках (ежедневно 9:00–21:00) и торговые сети.">
-<link rel="canonical" href="https://www.polarseafood.ru/gde-kupit">
+<meta property="og:type" content="website"><meta property="og:site_name" content="ПОЛАР"><meta property="og:title" content="Где купить продукцию ПОЛАР — фирменный магазин и торговые сети"><meta property="og:description" content="Где купить креветки, морепродукты и рыбную кулинарию ПОЛАР: фирменный магазин при заводе в Кремёнках (ежедневно 9:00–21:00) и торговые сети."><meta property="og:url" content="https://www.polarseafood.ru/gde-kupit.html"><meta property="og:image" content="https://www.polarseafood.ru/assets/img/og.jpg"><meta property="og:locale" content="ru_RU"><meta name="twitter:card" content="summary_large_image">
+
+
+
+
+
+
+
+<link rel="canonical" href="https://www.polarseafood.ru/gde-kupit.html">
 <meta name="theme-color" content="#061A2E">
 <link rel="icon" href="assets/img/favicon.ico">
 <link rel="preload" href="assets/fonts/unbounded-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -78,8 +87,8 @@
 <section class="phero"><div class="frost-bg"></div>
   <div class="wrap" style="position:relative">
     <div class="crumbs"><a href="index.html">Главная</a> / Где купить</div>
-    <h1 class="split-words">Где купить ПОЛАР</h1>
-    <p class="lead rv d2">Фирменный магазин при заводе — с полным ассортиментом, а продукцию наших марок можно найти в торговых сетях.</p>
+    <h1>Где купить ПОЛАР</h1>
+    <p class="lead">Фирменный магазин при заводе — с полным ассортиментом, а продукцию наших марок можно найти в торговых сетях.</p>
   </div>
 </section>
 
@@ -199,10 +208,12 @@
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <!--/@modals-->
-<script src="assets/js/data.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/main.js" defer></script>
 <script>
+addEventListener("DOMContentLoaded", () => {
 document.getElementById("recipes-rail").innerHTML = POLAR.recipes.map(r => `<a class="rcard" href="${r.url}" target="_blank" rel="noopener"><div class="ri"><img src="${r.image}" alt="${POLAR_UI.esc(r.title)}" loading="lazy"></div><div class="rb"><b>${POLAR_UI.esc(r.title)}</b><p>${POLAR_UI.esc(r.desc)}</p></div></a>`).join("");
+});
 </script>
 </body>
 </html>

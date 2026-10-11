@@ -5,10 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>О компании «Полар Сифуд Раша» — производитель морепродуктов с 2008 года</title>
 <meta name="description" content="ООО «Полар Сифуд Раша»: основана в 2008 году, собственный завод в Калужской области с 2013 года, около 850 контрагентов в 71 регионе России, сырьё из 13 стран. Награды, благотворительность, публикации в СМИ.">
-<link rel="canonical" href="https://www.polarseafood.ru/about">
+<meta property="og:type" content="website"><meta property="og:site_name" content="ПОЛАР"><meta property="og:title" content="О компании «Полар Сифуд Раша» — производитель морепродуктов с 2008 года"><meta property="og:description" content="ООО «Полар Сифуд Раша»: основана в 2008 году, собственный завод в Калужской области с 2013 года, около 850 контрагентов в 71 регионе России, сырьё из 13 стран. Награды, благотворительность, публикации в СМИ."><meta property="og:url" content="https://www.polarseafood.ru/about.html"><meta property="og:image" content="https://www.polarseafood.ru/assets/img/og.jpg"><meta property="og:locale" content="ru_RU"><meta name="twitter:card" content="summary_large_image">
+
+
+
+
+
+
+
+<link rel="canonical" href="https://www.polarseafood.ru/about.html">
 <meta name="theme-color" content="#061A2E">
 <link rel="icon" href="assets/img/favicon.ico">
 <link rel="preload" href="assets/fonts/unbounded-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -80,7 +89,7 @@
   <div class="mist"></div><canvas id="snow" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="crumbs"><a href="index.html">Главная</a> / О компании</div>
-    <h1 class="split-words">Производим то, <em>что едим сами</em></h1>
+    <h1>Производим то, <em>что едим сами</em></h1>
     <p class="lead">«Полар Сифуд Раша» основана в 2008 году. Сегодня это один из крупных поставщиков и переработчиков морепродуктов федерального масштаба с собственным заводом в Калужской области.</p>
     <div class="stats rv d3">
       <div class="stat"><b data-count="2008">2008</b><span>год основания компании</span></div>
@@ -224,9 +233,10 @@
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <!--/@modals-->
-<script src="assets/js/data.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/main.js" defer></script>
 <script>
+addEventListener("DOMContentLoaded", () => {
 (() => {
   const D = POLAR, U = POLAR_UI, esc = U.esc;
   document.getElementById("countries").innerHTML = D.countries.map(c => `<span style="background:var(--frost);border-color:var(--line);color:var(--ink)">${esc(c)}</span>`).join("");
@@ -242,6 +252,7 @@
   document.getElementById("news-list").innerHTML = D.news.map(n => `<a class="ncard rv" href="${n.url}" target="_blank" rel="noopener"><time datetime="${n.date}">${fmt(n.date)}</time><b>${esc(n.title)}</b><p>${esc(n.text)}</p></a>`).join("");
   U.observe(document);
 })();
+});
 </script>
 </body>
 </html>
