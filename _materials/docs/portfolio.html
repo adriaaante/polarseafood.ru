@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Портфолио FutureFlow — для ПОЛАР</title>
+<!-- Портфолио FutureFlow для ООО «ПОЛАР СИФУД РАША» (Константин). Шаблон отчёта скилла repo-notes;
+     --accent — синий ПОЛАР #1C4E91, логотип FutureFlow — тот же PNG 24,6×5,3 мм. Ссылки — только открытые сайты. -->
+<style>
+@font-face{font-family:"Manrope";src:url("../brand/Manrope.ttf") format("truetype");font-weight:200 800}
+@page{size:A4;margin:0}
+:root{--ink:#1C1C1B;--muted:#66625C;--line:#DCD8D0;--bg:#FFFFFF;--panel:#F3F6F9;--panel2:#E6EDF4;--accent:#1C4E91;--accent-ink:#163E74;--blue:#3c8ad8;--blue-ink:#2b6fb3;--ok:#2E8B4A}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;font-size:11px;line-height:1.42}
+.page{width:210mm;height:297mm;padding:13mm 15mm 14mm;position:relative;break-after:page;page-break-after:always;overflow:hidden}
+.page:last-child{break-after:auto;page-break-after:auto}
+.foot{position:absolute;left:15mm;right:15mm;bottom:7mm;display:flex;justify-content:space-between;font-size:8.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:4px}
+.foot b{color:var(--blue-ink);font-weight:700}
+.eyebrow{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);font-weight:800;margin:0 0 5px}
+h1{font-size:30px;line-height:1.1;font-weight:800;letter-spacing:-.015em;margin:0 0 10px;text-wrap:balance}
+h2{font-size:19px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;text-wrap:balance}
+h2 .n{color:var(--accent);margin-right:6px}
+p{margin:0 0 7px}
+.lead{font-size:12.5px;color:var(--muted);margin:0 0 12px;max-width:72ch}
+.small{font-size:9.5px;color:var(--muted)}
+b{font-weight:800}
+a{color:var(--accent-ink);text-decoration:none;font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0 14px}
+.kpi{border-radius:8px;padding:10px 12px}
+.kpi .v{font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:9.5px;margin-top:3px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card{background:var(--panel);border-radius:9px;padding:9px 12px;break-inside:avoid}
+.card h3{font-size:12.5px;font-weight:800;margin:0 0 1px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.card h3 a{font-size:9.5px;font-weight:700;white-space:nowrap}
+.card .who{font-size:9.5px;color:var(--muted);margin:0 0 5px}
+.card ul{margin:0;padding-left:14px}.card li{margin:0 0 2px}
+.card .res{margin-top:5px;padding-top:5px;border-top:1px solid var(--panel2);font-size:10px}
+.card .res b{color:var(--accent-ink)}
+.card.wide{grid-column:1 / -1}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.mini .card{padding:8px 10px}
+.mini .card p{font-size:10px;margin:0}
+.tag{display:inline-block;font-size:8px;font-weight:800;padding:1px 6px;border-radius:999px;background:#D9E8F8;color:var(--blue-ink);letter-spacing:.03em;vertical-align:middle;margin-left:4px}
+.cover{background:#0B1B2B;color:#fff;padding:18mm 16mm 14mm}
+.cover .eyebrow{color:#89D0E4}
+.cover h1{font-size:38px;color:#fff;max-width:20ch}
+.cover .lead{color:#C9D4DE;font-size:14px;max-width:62ch}
+.cover .kpi{background:#132A41}.cover .kpi .l{color:#A9B8C6}
+.cover .foot{border-top-color:#25384D;color:#8EA0B2}
+.toc{columns:2;column-gap:20px;font-size:11px;margin-top:4px}
+.toc div{break-inside:avoid;padding:4px 0;border-bottom:1px solid #25384D;display:flex;gap:8px}
+.toc .n{color:#89D0E4;font-weight:800;min-width:18px}
+.dirs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 0}
+.dirs div{background:#132A41;border-radius:8px;padding:9px 11px;font-size:10px;color:#C9D4DE}
+.dirs b{display:block;color:#fff;font-size:11.5px;margin-bottom:2px}
+.fflogo{display:block;width:24.6mm;height:5.3mm}
+.coverff{margin-top:12mm;padding-top:12px;border-top:1px solid #25384D;display:flex;align-items:center;gap:18px}
+.coverff .txt{font-size:10px;color:#A9B8C6;line-height:1.5}
+.coverff .txt b{color:#fff;font-weight:700;display:block;font-size:11.5px;margin-bottom:2px}
+table{border-collapse:collapse;width:100%;font-size:10.5px;margin:4px 0 10px}
+td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid var(--line)}
+td:first-child{width:38%;color:var(--muted)}
+.call{border-left:3px solid var(--accent);background:var(--panel);padding:9px 12px;border-radius:0 8px 8px 0;margin:10px 0}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.steps4 div{background:var(--panel);border-radius:8px;padding:8px 10px;font-size:9.8px}.steps4 b{display:block;font-size:11px;color:var(--accent-ink);margin-bottom:3px}
+.sig{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <p class="eyebrow">FutureFlow · портфолио · октябрь 2026</p>
+  <h1>Сайты, продвижение и автоматизация, которые работают на бизнес</h1>
+  <p class="lead">Здесь наши проекты с открытыми ссылками: что сделали и чем это помогло клиенту. Ведём проект целиком: аудит, сайт, поиск и карты, реклама, CRM и ИИ-инструменты. Работаем по договору, отчитываемся фактами.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="v">25+</div><div class="l">проектов: сайты, продвижение, продукты</div></div>
+    <div class="kpi"><div class="v">3 400</div><div class="l">страниц магазина Сферикса на сопровождении</div></div>
+    <div class="kpi"><div class="v">×6–8</div><div class="l">быстрее стал отвечать сайт Катанета</div></div>
+    <div class="kpi"><div class="v">3</div><div class="l">собственных продукта: МИС, CRM, pet-платформа</div></div>
+  </div>
+  <div class="dirs">
+    <div><b>Продвижение</b>Поиск Яндекса, карты и справочники, Директ, Авито и маркетплейсы</div>
+    <div><b>Сайты и магазины</b>Быстрые сайты, каталоги, юридическая часть по 152-ФЗ</div>
+    <div><b>Автоматизация и ИИ</b>CRM, боты, учёт склада, радар заявок, интеграции</div>
+  </div>
+  <h2 style="color:#fff;margin-top:12mm">Содержание</h2>
+  <div class="toc">
+    <div><span class="n">1</span><span>Продвижение и сопровождение</span></div>
+    <div><span class="n">2</span><span>Медицина и собственные продукты</span></div>
+    <div><span class="n">3</span><span>Сайты, автоматизация и ИИ</span></div>
+    <div><span class="n">4</span><span>Для ПОЛАР, как работаем, реквизиты</span></div>
+  </div>
+  <div class="coverff"><img class="fflogo" src="../brand/futureflow-logo.png" alt="FutureFlow"><div class="txt"><b>futureflow.ru</b>hello@futureflow.ru · +7 925 904-01-11</div></div>
+  <div class="foot"><span>Ссылки проверены 14.10.2026 — все открываются</span><span>futureflow.ru</span></div>
+</section>
+
+<section class="page">
+  <p class="eyebrow">Раздел 1</p>
+  <h2><span class="n">1</span>Продвижение и сопровождение</h2>
+  <p class="lead">Ведём продвижение целиком по ежемесячному договору: сайт, поиск, карты, реклама и текущие задачи. Каждая работа записывается в журнал со ссылкой и пользой для бизнеса.</p>
+  <div class="cards">
+    <div class="card wide">
+      <h3>ТПК «Сферикс» — подшипники и РВД, B2B <a href="https://shop.tpk-sferix.ru/">shop.tpk-sferix.ru ↗</a></h3>
+      <p class="who">Интернет-магазин и корпоративный сайт · сопровождение с июля 2026</p>
+      <ul>
+        <li>Фид товаров для Яндекса, карта сайта, свои заголовки и тексты разделов вместо шаблонных, страница аналогов на всех ~3 400 страницах.</li>
+        <li>Склад и цены сверяются с учёткой клиента: обновили 920 карточек, оптовая и розничная цена видны у 1 732 позиций.</li>
+        <li>Автозагрузка объявлений на Авито через API, заказы Ozon, своя CRM заказов и «Заявка на оптовую поставку» в один клик.</li>
+        <li>Регулярный контент в Telegram и Дзене; закрыли 7 посторонних доступов к Метрике после прежних подрядчиков.</li>
+      </ul>
+      <p class="res"><b>Итог:</b> больше 340 записей о работах за 3 месяца; магазин продаёт то, что реально есть на складе, а оптовик видит свою цену без звонка.</p>
+    </div>
+    <div class="card">
+      <h3>Катанет — выхлопные системы и автосервис <a href="https://catanet.ru/">catanet.ru ↗</a></h3>
+      <p class="who">Магазин на 4 253 товара + автосервис, Москва</p>
+      <ul>
+        <li>Кэш страниц: сайт отвечает в 6–8 раз быстрее.</li>
+        <li>Короткое оформление заказа, «цена по запросу» на ~700 карточках, оплата по счёту для организаций.</li>
+        <li>Блок автосервиса на 20 страницах, ведение Директа с упором на локальный спрос, защита от подбора паролей (1 670 попыток).</li>
+      </ul>
+      <p class="res"><b>Итог:</b> меньше брошенных корзин и потерянных оптовых заказов, быстрые страницы для поиска.</p>
+    </div>
+    <div class="card">
+      <h3>Dental Str.25 — стоматология <a href="https://dentalstr25.ru/">dentalstr25.ru ↗</a></h3>
+      <p class="who">Реутов · продвижение с сентября 2026</p>
+      <ul>
+        <li>Аудит 49 страниц и карточки Яндекс Карт: 40+ ошибок.</li>
+        <li>Своя Метрика и Вебмастер вместо счётчиков прежнего подрядчика.</li>
+        <li>Политика, согласие, сведения о медорганизации и документы для пациентов по закону; убран дубль главной.</li>
+      </ul>
+      <p class="res"><b>Итог:</b> сайт соответствует требованиям к медорганизациям и не теряет заявки на сломанных ссылках.</p>
+    </div>
+    <div class="card">
+      <h3>Школа танцев Ирины Вагнер <a href="https://vagner-ds.ru/">vagner-ds.ru ↗</a></h3>
+      <p class="who">Москва, м. Серпуховская · сайт, карты, Директ</p>
+      <ul>
+        <li>Аудит из 42 пунктов: сайт, SEO, Яндекс Карты, 2ГИС, Zoon, VK, 8 соседних школ.</li>
+        <li>Свои заголовки и описания у главной и 15 направлений, разметка DanceSchool, расписание текстом для телефона, FAQ.</li>
+        <li>Новые политика и согласие на обработку данных.</li>
+      </ul>
+      <p class="res"><b>Итог:</b> каждое направление находится в поиске по своему запросу.</p>
+    </div>
+    <div class="card">
+      <h3>Сафа Клиник — пересадка волос <a href="https://safahairclinic.ru/">safahairclinic.ru ↗</a></h3>
+      <p class="who">Москва · аудит и запуск площадок</p>
+      <ul>
+        <li>Аудит 33 страниц: требования к сайту медорганизации, реклама и персональные данные, конкуренты.</li>
+        <li>План запуска клиники на картах, в справочниках и на медицинских агрегаторах с нуля.</li>
+      </ul>
+      <p class="res"><b>Итог:</b> понятный план, с которого новая клиника получает первые обращения.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Портфолио · <b>FutureFlow</b></span><span>стр. 2</span></div>
+</section>
+
+<section class="page">
+  <p class="eyebrow">Раздел 2</p>
+  <h2><span class="n">2</span>Медицина и собственные продукты</h2>
+  <p class="lead">Для группы из трёх стоматологий сделали сайты, продвижение и собственную медицинскую систему. Каждой клинике свой стиль и тексты, техническая основа общая.</p>
+  <div class="cards">
+    <div class="card">
+      <h3>Ангел-Дент <a href="https://angel-denta.ru/">angel-denta.ru ↗</a></h3>
+      <p class="who">Стоматология · сайт, акции, портфолио врачей</p>
+      <ul>
+        <li>Быстрый статический сайт: услуги, цены, врачи, акции с фидами Яндекс Бизнеса.</li>
+        <li>Портфолио «до/после» с водяным знаком клиники.</li>
+        <li>SEO/GEO-аудит трёх сайтов по Вебмастеру и Метрике.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Версаль <a href="https://versal-dent.ru/">versal-dent.ru ↗</a></h3>
+      <p class="who">Премиальная стоматология · отдельный сайт клиники</p>
+      <ul>
+        <li>Свой бежево-золотой стиль, свои врачи, контакты и реквизиты.</li>
+        <li>Акция «КТ + план лечения» обновлена разом на всех страницах, в описаниях для поиска и в фидах.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Венеция <a href="https://venecia-dent.ru/">venecia-dent.ru ↗</a></h3>
+      <p class="who">Семейная стоматология, Мытищи</p>
+      <ul>
+        <li>Тексты написаны с нуля, без копий двух других клиник.</li>
+        <li>Чужие адреса прежнего владельца домена убраны из поиска (410), 26 страниц отправлены на переобход.</li>
+        <li>Акция «Комплексная чистка» за 3 500 ₽ вместо 8 600 ₽ по отдельности.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Доктор Влада Боброва <a href="https://doctorbobrova.ru/">doctorbobrova.ru ↗</a></h3>
+      <p class="who">Врач-косметолог · личный сайт</p>
+      <ul>
+        <li>Сайт врача: услуги, сертификаты, о враче, запись.</li>
+        <li>Спокойная подача, которая вызывает доверие у пациента.</li>
+      </ul>
+    </div>
+    <div class="card wide">
+      <h3>Клинио — медицинская система для стоматологий <span class="tag">собственный продукт</span> <a href="https://clinio.ru/">clinio.ru ↗</a></h3>
+      <p class="who">Облачная МИС для нескольких клиник · первые пользователи — три клиники группы Ангел-Дент</p>
+      <ul>
+        <li>Запись, карты пациентов, лечение и планы, касса и отчёты в одном окне. Ориентир по функциям — «Инфодент», только проще, быстрее и аккуратнее.</li>
+        <li>Одна система на несколько клиник: у каждой свои врачи, кабинеты и данные.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="call"><b>Что это даёт.</b> У клиник группы теперь свои сайты, общие акции и единая система вместо разрозненных таблиц: меняем цену или акцию сразу во всех местах, где пациент её видит.</div>
+  <h2 style="font-size:15px;margin:12px 0 6px">Собственные продукты</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Твой друг — pet-платформа <span class="tag">продукт</span> <a href="https://tvoj-drug.ru/">tvoj-drug.ru ↗</a></h3>
+      <p class="who">Покупатели, заводчики и мастера на одной площадке</p>
+      <ul>
+        <li>Проверка документов, бейджи доверия, подтверждённые отзывы, выпускники питомника.</li>
+        <li>Посадочные страницы по видам, породам (~174) и городам — под поиск.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>AquaCore — программа для автомоек <span class="tag">продукт</span> <a href="https://aqua-core.ru/">aqua-core.ru ↗</a></h3>
+      <p class="who">Автомойки и шиномонтаж</p>
+      <ul>
+        <li>Доска заказов в реальном времени, распознавание госномеров, лояльность.</li>
+        <li>Контроль кассы и качества, зарплата сотрудников, аналитика.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Портфолио · <b>FutureFlow</b></span><span>стр. 3</span></div>
+</section>
+
+<section class="page">
+  <p class="eyebrow">Раздел 3</p>
+  <h2><span class="n">3</span>Сайты, автоматизация и ИИ</h2>
+  <p class="lead">Делаем сайты без конструкторов: быстро открываются с телефона, легко находятся и не зависят от чужой платформы. Рутину — заявки, остатки, счета, напоминания — передаём автоматике.</p>
+  <div class="mini" style="margin-top:4px">
+    <div class="card"><h3>Void &amp; Form</h3><p>Дизайн интерьеров и ремонт. <a href="https://voidaform.ru/">voidaform.ru ↗</a></p></div>
+    <div class="card"><h3>LEDI JAZZ</h3><p>Сайт-магазин женской одежды с фильтрами каталога. <a href="https://ledijazz.ru/">ledijazz.ru ↗</a></p></div>
+    <div class="card"><h3>НЕ СПАТЬ МОСКВА</h3><p>Спортивное комьюнити уличных тренировок. <a href="https://nespatmoskva.ru/">nespatmoskva.ru ↗</a></p></div>
+    <div class="card"><h3>Под Ноль</h3><p>Демонтаж и подготовка квартир к ремонту. <a href="https://adriaaante.github.io/demontazhnye_raboty/">открыть ↗</a></p></div>
+    <div class="card"><h3>Анна Маловичко</h3><p>Психолог, Пятигорск и онлайн. <a href="https://adriaaante.github.io/ania-psychology-site/">открыть ↗</a></p></div>
+    <div class="card"><h3>Барбершоп «13 Лезвий»</h3><p>Мисайлово, сайт-визитка с анимацией. <a href="https://adriaaante.github.io/Barbershop-13-lezvij/">открыть ↗</a></p></div>
+    <div class="card"><h3>KOTOV</h3><p>Премиальный барбер: работы, видео, прайс, запись. <a href="https://adriaaante.github.io/kotov-haircuts/">открыть ↗</a></p></div>
+    <div class="card"><h3>Автомойка на Коломенской</h3><p>Сайт-визитка, связь звонком и в мессенджерах. <a href="https://adriaaante.github.io/avtomoyka-kolomenskaya-site/">открыть ↗</a></p></div>
+    <div class="card"><h3>FutureFlow</h3><p>Наш сайт: 3D-сцена, страницы услуг и отраслей. <a href="https://futureflow.ru/">futureflow.ru ↗</a></p></div>
+  </div>
+  <div class="call"><b>Как мы делаем сайты.</b> Главный экран на телефоне открывается за 2–3 секунды. Каждой услуге и товару — своя страница под поисковый запрос. Формы с согласием и политикой по 152-ФЗ, данные хранятся только в России.</div>
+  <h2 style="font-size:15px;margin:12px 0 6px">Автоматизация и ИИ</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Радар заявок — ИИ для B2B (Сферикс)</h3>
+      <p class="who">Внутренний инструмент на Python</p>
+      <ul>
+        <li>Ищет и разбирает входящий спрос на подшипники, готовит ответы и посты для канала компании.</li>
+        <li>Менеджер видит только то, что можно продать.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>CRM заказов и склада (Сферикс)</h3>
+      <p class="who">Панель в магазине клиента</p>
+      <ul>
+        <li>Синхронизация остатков и цен с учёткой, правила цен, отчёты по складу.</li>
+        <li>Владелец может работать как привык: скачал таблицу, поправил, загрузил обратно.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>FutureFlow CRM</h3>
+      <p class="who">Наша система ведения клиентов</p>
+      <ul>
+        <li>Клиенты, договоры, счета с QR, акты и график оплат с автоотправкой.</li>
+        <li>Напоминания, контроль сайтов клиентов и копия заявок с сайта.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>«Пуговка» — учёт детской одежды</h3>
+      <p class="who">Мобильное приложение для склада</p>
+      <ul>
+        <li>Товар с фото: пол, категория, рост, цвет, состав, цена и остаток.</li>
+        <li>Работает с телефона как приложение; дальше на той же базе — витрина и магазин.</li>
+      </ul>
+    </div>
+    <div class="card wide">
+      <h3>Боты и интеграции</h3>
+      <ul>
+        <li>Telegram-боты: сигнал о новой заявке без персональных данных, оповещения о сбоях, кнопки «Беру в работу».</li>
+        <li>Интеграции с Яндекс Метрикой, Вебмастером, Директом и Бизнесом, Авито, Ozon, СДЭК и почтой по API, плюс собственные отчёты.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="call" style="margin-top:8px"><b>Данные.</b> Персональные данные клиентов храним на серверах в России, в иностранные сервисы уходит только сигнал «пришла заявка». Так проект не создаёт рисков по 152-ФЗ.</div>
+  <div class="foot"><span>Портфолио · <b>FutureFlow</b></span><span>стр. 4</span></div>
+</section>
+
+
+<section class="page">
+  <p class="eyebrow">Раздел 4</p>
+  <h2><span class="n">4</span>Для ПОЛАР, как работаем, реквизиты</h2>
+  <p class="lead">Для ПОЛАР уже сделали аудит текущего сайта и концепт нового: каталог на 112 позиций, раздел для оптовиков и «Где купить».</p>
+  <div class="cards">
+    <div class="card wide">
+      <h3>ПОЛАР — новый сайт (концепт) <a href="https://adriaaante.github.io/polarseafood.ru/">открыть превью ↗</a></h3>
+      <ul>
+        <li>Аудит polarseafood.ru: 147 страниц, 89 скриншотов с телефона и компьютера, карточки в Яндексе, 2ГИС и Google.</li>
+        <li>Новый сайт: 7 разделов, 112 страниц товаров с поиском, фильтрами и запросом прайса по позиции.</li>
+        <li>Скорость на телефоне — 90–94 балла в Lighthouse (сейчас 49–55), главный экран за 3,4 с (сейчас 10,9 с).</li>
+      </ul>
+    </div>
+  </div>
+  <h2 style="margin-top:12px;font-size:15px">Как мы работаем</h2>
+  <div class="steps4">
+    <div><b>1. Аудит</b>Сайт, поиск, карты, реклама и конкуренты — что мешает продажам и что даст результат быстрее всего.</div>
+    <div><b>2. Договор</b>Одна сумма в месяц за всё оговорённое, без скрытых доплат. Разработки — отдельной сметой.</div>
+    <div><b>3. Работа</b>Ежедневно ведём сайт, карты и рекламу. Каждую работу записываем в журнал со ссылкой.</div>
+    <div><b>4. Отчёт</b>По запросу — отчёт фактами и цифрами: что сделано, где посмотреть, что дальше.</div>
+  </div>
+  <h2 style="margin-top:12px;font-size:15px">Реквизиты исполнителя</h2>
+  <table>
+    <tr><td>Исполнитель</td><td><b>ИП Зайдель Адриан Патрик</b> (бренд FutureFlow)</td></tr>
+    <tr><td>ИНН · ОГРНИП</td><td>772590578053 · 325774600319981</td></tr>
+    <tr><td>Адрес</td><td>115407, г. Москва, ул. Затонная, д. 5, корп. 4, кв. 27</td></tr>
+    <tr><td>Банк</td><td>АО «ТБанк»</td></tr>
+    <tr><td>Расчётный счёт</td><td>40802810800008299634</td></tr>
+    <tr><td>БИК · корр. счёт</td><td>044525974 · 30101810145250000974</td></tr>
+    <tr><td>Налогообложение</td><td>УСН, без НДС</td></tr>
+    <tr><td>Контакты</td><td>+7 925 904-01-11 · hello@futureflow.ru · futureflow.ru</td></tr>
+  </table>
+  <p class="small">Работаем по договору: ежемесячный счёт, акт за месяц, обмен сканами по почте до обмена оригиналами.</p>
+  <div class="sig">
+    <div><img class="fflogo" src="../brand/futureflow-logo.png" alt="FutureFlow"><div class="small">futureflow.ru</div></div>
+    <div class="small">14 октября 2026</div>
+  </div>
+  <div class="foot"><span>Портфолио · <b>FutureFlow</b></span><span>стр. 5</span></div>
+</section>
+</body>
+</html>
